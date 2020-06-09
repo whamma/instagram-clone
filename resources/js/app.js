@@ -24,7 +24,10 @@ Vue.component(
     require('./components/FollowButton.vue').default,
 );
 
-Vue.component('count-label', require('./components/CountLabel.vue').default);
+Vue.component(
+    'follower-count',
+    require('./components/FollowerCount.vue').default,
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

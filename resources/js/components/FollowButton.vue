@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { EventBus } from '../utils/event-bus';
+
 export default {
     name: 'follow-button',
     props: ['userId', 'follows'],
@@ -27,6 +29,10 @@ export default {
                 .post('/follow/' + this.userId)
                 .then(response => {
                     this.status = response.data.attached.length > 0;
+                    EventBus.$emit(
+                        'follow',
+                        this.status ? 'follow' : 'unfollow',
+                    );
                 })
                 .catch(errors => {
                     if (errors.response.status === 401) {
